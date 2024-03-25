@@ -10,6 +10,10 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# Anti-copyright infringement measures
+/Assets/Externals/PolygonPrototype
+/Assets/Externals/PolygonPrototype.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
