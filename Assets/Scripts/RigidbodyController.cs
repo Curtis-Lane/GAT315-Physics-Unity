@@ -1,11 +1,26 @@
 using UnityEngine;
 
-public class KinematicController : MonoBehaviour {
+[RequireComponent(typeof(Rigidbody))]
+public class RigidbodyController : MonoBehaviour {
 	[SerializeField]
 	float speed = 2.5f;
 
 	[SerializeField]
 	Space space = Space.World;
+
+	Rigidbody rb;
+	Vector3 force = Vector3.zero;
+	Vector3 torque = Vector3.zero;
+
+	[SerializeField]
+	ForceMode forceMode;
+
+	[SerializeField]
+	ForceMode torqueMode;
+
+	void Start() {
+		rb = GetComponent<Rigidbody>();
+	}
 
 	void Update() {
 		Vector3 direction = Vector3.zero;
@@ -19,12 +34,15 @@ public class KinematicController : MonoBehaviour {
 		}
 
 		direction.z = Input.GetAxis("Vertical");
-
 		direction = Vector3.ClampMagnitude(direction, 1.0f);
 
-		transform.rotation *= Quaternion.Euler(0, rotation * speed, 0);
+		force = direction * speed;
+		torque = Vector3.up * rotation * speed;
+	}
 
-		transform.Translate(direction * speed * Time.deltaTime, space);
+	void FixedUpdate() {
+		rb.AddRelativeForce(force, forceMode);
+		rb.AddTorque(torque, torqueMode);
 	}
 
 	private void OnDrawGizmos() {

@@ -22,7 +22,7 @@ public class RigidbodyMover : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		if(Input.GetKey(KeyCode.Space)) {
 			rb.AddForce(force, forceMode);
 			rb.AddTorque(torque, torqueMode);
