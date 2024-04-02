@@ -22,9 +22,19 @@ public class CarController : MonoBehaviour {
 	[SerializeField] float maxMotorTorque;
 	[SerializeField] float maxSteeringAngle;
 
+	Rigidbody rb;
+
+	public void Start() {
+		rb = GetComponent<Rigidbody>();
+	}
+
 	public void Update() {
 		if(Input.GetKeyDown(KeyCode.LeftControl)) {
 			transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+			rb.angularVelocity = Vector3.zero;
+		}
+		if(Input.GetKey(KeyCode.LeftShift)) {
+			rb.velocity = Vector3.zero;
 		}
 	}
 

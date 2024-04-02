@@ -6,6 +6,11 @@ public class Aim : MonoBehaviour {
 	[SerializeField]
 	float sensitivity = 3.0f;
 
+	[SerializeField] float minPitch = -50.0f;
+	[SerializeField] float maxPitch = 50.0f;
+	[SerializeField] float minYaw = -70.0f;
+	[SerializeField] float maxYaw = 70.0f;
+
 	Vector3 rotation = Vector3.zero;
 
 	void Start() {
@@ -21,12 +26,12 @@ public class Aim : MonoBehaviour {
 		rotation.x += axis.x * sensitivity;
 		rotation.y += axis.y * sensitivity;
 
-		rotation.x = Mathf.Clamp(rotation.x, -50, 50);
-		rotation.y = Mathf.Clamp(rotation.y, -70, 70);
+		rotation.x = Mathf.Clamp(rotation.x, minPitch, maxPitch);
+		rotation.y = Mathf.Clamp(rotation.y, minYaw, maxYaw);
 
 		Quaternion qYaw = Quaternion.AngleAxis(rotation.y, Vector3.up);
 		Quaternion qPitch = Quaternion.AngleAxis(rotation.x, Vector3.right);
 
-		transform.rotation = (qYaw * qPitch);
+		transform.localRotation = (qYaw * qPitch);
 	}
 }
