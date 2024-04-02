@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour {
 		public Wheel rightWheel;
 		public bool isMotor;
 		public bool isSteering;
+		public bool isSteeringInverted;
 	}
 
 	[SerializeField] Axle[] axles;
@@ -33,8 +34,8 @@ public class CarController : MonoBehaviour {
 
 		foreach(Axle axle in axles) {
 			if(axle.isSteering) {
-				axle.leftWheel.collider.steerAngle = steering;
-				axle.rightWheel.collider.steerAngle = steering; //<set axle right wheel collider steer angle>
+				axle.leftWheel.collider.steerAngle = (axle.isSteeringInverted) ? -steering : steering;
+				axle.rightWheel.collider.steerAngle = (axle.isSteeringInverted) ? -steering : steering; //<set axle right wheel collider steer angle>
 			}
 			if(axle.isMotor) {
 				axle.leftWheel.collider.motorTorque = motor;
