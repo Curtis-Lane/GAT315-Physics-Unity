@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - CarBody
+  - Kill
+  - Block
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Kill
   - Water
   - UI
   - 
