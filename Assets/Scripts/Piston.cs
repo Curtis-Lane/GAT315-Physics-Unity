@@ -15,17 +15,16 @@ public class Piston : MonoBehaviour {
 
 	bool isActive = false;
 
-	// Start is called before the first frame update
 	void Start() {
 		action.onEnter += SetActive;
 
 		rb = GetComponent<Rigidbody>();
 	}
 
-	// Update is called once per frame
-	void Update() {
+	void FixedUpdate() {
 		if(isActive) {
 			rb.AddForce(speed, forceMode);
+			isActive = false;
 		}
 	}
 

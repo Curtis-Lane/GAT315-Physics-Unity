@@ -19,6 +19,9 @@ public class ExplosiveBlock : MonoBehaviour {
 	[SerializeField]
 	AudioSource audioSource = null;
 
+	[SerializeField]
+	GameObject explodePrefab = null;
+
 	Rigidbody rb;
 
 	bool isDestroyed = false;
@@ -37,6 +40,10 @@ public class ExplosiveBlock : MonoBehaviour {
 				if(collider.attachedRigidbody != null) {
 					collider.attachedRigidbody.AddExplosionForce(blastForce, transform.position, blastRadius, 0.0f, ForceMode.VelocityChange);
 				}
+			}
+
+			if(explodePrefab != null) {
+				Instantiate(explodePrefab, transform.position, transform.rotation);
 			}
 		}
 	}

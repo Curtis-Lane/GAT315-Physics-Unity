@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 686265318461287449}
   - component: {fileID: 3001211016493107193}
   - component: {fileID: 1145463318302591952}
-  - component: {fileID: 3754565925158821093}
+  - component: {fileID: 7120993563581303060}
   - component: {fileID: 6710478756721364127}
   m_Layer: 0
   m_Name: ExplosiveBlock
@@ -157,7 +157,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.25, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3754565925158821093
+--- !u!114 &7120993563581303060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,11 +166,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227024584927829075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93fe5303458dc1b44938a194cc20e218, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bb3343e95de8b74bb1258d01d41c693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   points: 100
+  blastRadius: 4
+  blastForce: 5
   audioSource: {fileID: 6710478756721364127}
+  explodePrefab: {fileID: 1804206099813350, guid: 4dd02b5f854b6c84990fbeb810abffe4,
+    type: 3}
 --- !u!82 &6710478756721364127
 AudioSource:
   m_ObjectHideFlags: 0
