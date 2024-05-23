@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour {
 	private CharacterController controller;
 	private Vector3 velocity;
 	private bool onGround;
+	private bool equipped = false;
 
 	[SerializeField]
 	private float playerSpeed = 2.0f;
@@ -18,13 +20,19 @@ public class CharacterMovement : MonoBehaviour {
 	private float rotationSpeed = 3.0f;
 	[SerializeField]
 	private Transform view;
-
 	[SerializeField]
 	Animator animator = null;
+	[SerializeField]
+	Rig rig;
 
 	private void Start() {
-		//controller = gameObject.AddComponent<CharacterController>();
 		controller = GetComponent<CharacterController>();
+
+		if(equipped) {
+			rig.weight = 1;
+		} else {
+			rig.weight = 0;
+		}
 	}
 
 	void Update() {
@@ -51,6 +59,19 @@ public class CharacterMovement : MonoBehaviour {
 
 		velocity.y += Physics.gravity.y * Time.deltaTime;
 		controller.Move(velocity * Time.deltaTime);
+
+		if(Input.GetKeyDown(KeyCode.E)) {
+			if(animator != null) {
+				equipped = !equipped;
+				animator.SetBool("Equipped", equipped);
+			}
+
+			if(equipped) {
+				rig.weight = 1;
+			} else {
+				rig.weight = 0;
+			}
+		}
 
 		if(animator != null) {
 			animator.SetFloat("Speed", move.magnitude * playerSpeed);

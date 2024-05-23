@@ -18,10 +18,14 @@ public class Weapon : MonoBehaviour {
 	bool canFire = true;
 
 	void Update() {
+		Debug.DrawRay(firePoint.position, firePoint.forward * 10, Color.red);
+
 		if(canFire) {
 			if(Input.GetMouseButtonDown(0)) {
 				if(ammoPrefab != null) {
-					audioSource.Play();
+					if(audioSource != null) {
+						audioSource.Play();
+					}
 					Instantiate(ammoPrefab, firePoint.position, firePoint.rotation);
 					if(fireInterval > 0.0f) {
 						canFire = false;
